@@ -1,0 +1,64 @@
+.calculator {
+    max-width: 250px;
+    border: 2px solid black;
+    border-radius: 16px;
+    overflow: hidden;
+
+    &__head {
+        display: grid;
+        place-items: center;
+        background-color: white;
+        padding-block: 12px 24px;
+        padding-inline: 24px;
+        width: inherit;
+    }
+
+    &__body {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 8px;
+        background-color: lightgreen;
+        padding-block: 12px 24px;
+        padding-inline: 12px;
+    }
+
+    &__number-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        'btn-9 btn-8 btn-7'
+        'btn-6 btn-5 btn-4'
+        'btn-3 btn-2 btn-1'
+        'btn-0 btn-0 btn-0'
+        ;
+        column-gap: 4px;
+        row-gap: 4px;
+
+        #btn-0 {
+            grid-area: btn-0;
+        }
+    }
+
+    &__operation-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+        grid-template-areas: 
+        'btn-clear btn-clear'
+        'btn-divide btn-multiply'
+        'btn-subtract btn-add'
+        'btn-equal btn-equal'
+        ;
+        column-gap: 4px;
+        row-gap: 4px;
+
+        #btn-clear {
+            grid-area: btn-clear;
+        }
+
+        #btn-equal {
+            grid-area: btn-equal;
+        }
+    }
+}

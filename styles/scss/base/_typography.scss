@@ -1,0 +1,17 @@
+:root {
+    --font-primary: 'Josefin Sans', sans-serif;
+    --font-secondary: 'Yeseva One', serif;
+}
+
+body {
+    font-family: var(--font-primary);
+}
+
+h1, h2, h3, 
+.text--xxxl, 
+.text--xxl, 
+.txt--xl, 
+.txt--lg {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+}

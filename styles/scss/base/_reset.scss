@@ -1,0 +1,33 @@
+/*
+  Got this reset from Josh -> https://www.joshwcomeau.com/css/custom-css-reset/ <= I tweaked it a li'l bit.
+*/
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    line-height: calc(1em + 0.5rem);
+    // for debugging purposes
+    // outline: auto;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--color-background-primary);
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+}
+
+ul {
+    padding-left: 0;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzzi's Calculator</title>
+    <link href="styles/css/main.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&family=Yeseva+One&display=swap" rel="stylesheet">
+</head>
+<body class>
+    <header class="header">
+        <hgroup>
+            <h1>Basic Calculator</h1>
+            <span>By <strong>Uzzi</strong></span>
+        </hgroup>
+    </header>
+    <main class="main">
+        <div class="calculator">
+            <div class="calculator__head">
+                <input class="calculator__screen" placeholder="0">
+            </div>
+            <div class="calculator__body">
+                <div class="calculator__number-buttons">
+                    <button class="calculator__button" id="btn-9">9</button>
+                    <button class="calculator__button" id="btn-8">8</button>
+                    <button class="calculator__button" id="btn-7">7</button>
+                    <button class="calculator__button" id="btn-6">6</button>
+                    <button class="calculator__button" id="btn-5">5</button>
+                    <button class="calculator__button" id="btn-4">4</button>
+                    <button class="calculator__button" id="btn-3">3</button>
+                    <button class="calculator__button" id="btn-2">2</button>
+                    <button class="calculator__button" id="btn-1">1</button>
+                    <button class="calculator__button" id="btn-0">0</button>
+                </div>
+                <div class="calculator__operation-buttons">
+                    <button class="calculator__button" id="btn-clear">CLS</button>
+                    <button class="calculator__button" id="btn-divide">/</button>
+                    <button class="calculator__button" id="btn-multiply">*</button>
+                    <button class="calculator__button" id="btn-subtract">-</button>
+                    <button class="calculator__button" id="btn-add">+</button>
+                    <button class="calculator__button" id="btn-equal">=</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class='footer'>
+        <p class='footer__author'>
+          <span>&copy; 2024 <a href="https://github.com/uzzikyle" target="_blank"><strong>UZZI</strong></a></span> <br />
+          <span>All Rights Reserved.</span>
+        </p>
+      </footer>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    function getResult() {
+        let userInput = getInput()
+        let result = calculate(userInput)
+        return result
+    }
+
+    function calculate(userInput) {
+        if (userInput === "") {
+            return 0
+        }
+
+        userInput = userInput.split(" ");
+        let total = parseFloat(userInput[0]);
+
+        for (let i = 1; i < userInput.length; i += 2) {
+            let operator = userInput[i];
+            let operand = parseFloat(userInput[i + 1]);
+
+            switch (operator) {
+                case '+':
+                    total += operand;
+                    break;
+                case '-':
+                    total -= operand;
+                    break;
+                case '*':
+                    total *= operand;
+                    break;
+                case '/':
+                    if (operand !== 0) {
+                        total /= operand;
+                    } else {
+                        alert("Cannot divide by zero");
+                        return "Error";
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return total;
+    }
+
+    function getInput() {
+        return $(".calculator__screen").val().trim()
+    }
+
+    $(document).ready(function(){
+        let windowHeight = $(window).outerHeight(true)
+        let headerHeight = $(".header").outerHeight(true)
+        let footerHeight = $(".footer").outerHeight(true)
+
+        $(".main").css("height", function(){
+            let mainHeight =windowHeight - (headerHeight + footerHeight)
+            return mainHeight
+        })
+
+        $(".calculator__button").click(function(){
+            let userInput = $(this).text()
+
+            if (userInput === "CLS") { 
+                $(".calculator__screen").val("")
+                return
+            } 
+
+            if (userInput === "=") {
+                $(".calculator__screen").val(getResult())
+                return
+            }
+
+            $(".calculator__screen").val(function(index, origVal){
+                if ("/*-+".includes(userInput)) {
+                    return `${origVal} ${userInput} `
+                }
+                return origVal + userInput
+            })
+        })
+    })
+</script>
+</html>
